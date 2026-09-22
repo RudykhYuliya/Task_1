@@ -1,0 +1,44 @@
+from unittest.mock import Mock
+
+import pytest
+
+from praktikum.bun import Bun
+from praktikum.burger import Burger
+from praktikum.database import Database
+from praktikum.ingredient import Ingredient
+
+
+@pytest.fixture
+def burger():
+    return Burger()
+
+
+@pytest.fixture
+def database():
+    return Database()
+
+
+@pytest.fixture
+def mock_bun():
+    bun = Mock(spec=Bun)
+    bun.get_name.return_value = 'black bun'
+    bun.get_price.return_value = 100
+    return bun
+
+
+@pytest.fixture
+def mock_first_ingredient():
+    ingredient = Mock(spec=Ingredient)
+    ingredient.get_name.return_value = 'hot sauce'
+    ingredient.get_type.return_value = 'SAUCE'
+    ingredient.get_price.return_value = 50
+    return ingredient
+
+
+@pytest.fixture
+def mock_second_ingredient():
+    ingredient = Mock(spec=Ingredient)
+    ingredient.get_name.return_value = 'cutlet'
+    ingredient.get_type.return_value = 'FILLING'
+    ingredient.get_price.return_value = 80
+    return ingredient
